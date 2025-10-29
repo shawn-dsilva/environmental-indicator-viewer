@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card"
 const InfoCard = () => {
     return (
-        <Card className="w-1/4 m-2">
+        <Card className="w-1/4 rounded-none">
             <CardHeader>
                 <CardTitle>Card Title</CardTitle>
                 <CardDescription>Card Description</CardDescription>

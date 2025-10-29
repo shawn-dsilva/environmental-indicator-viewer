@@ -1,4 +1,3 @@
-import CardDrawer from "./components/CardDrawer";
 import MainMap from "./components/MainMap";
 import MyCardDrawer from "./components/MyCardDrawer";
 import Nav from "./components/Nav";
@@ -11,7 +10,7 @@ export default function Home() {
                 <div className="relative h-svh w-full">
                     <MainMap />
                     {/* <CardDrawer className={"absolute bottom-0 left-0"} /> */}
-                    <MyCardDrawer></MyCardDrawer>
+                    <MyCardDrawer />
                 </div>
 
             </main>
