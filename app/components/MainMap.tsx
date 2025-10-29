@@ -7,7 +7,7 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
 const MainMap = () => {
-    const mapContainer = useRef(null);
+    const mapContainer = useRef();
 
     useEffect(() => {
         const map = new Map({
@@ -26,7 +26,7 @@ const MainMap = () => {
         return () => map.dispose(); // Clean up on unmount
     }, []);
 
-    return <div ref={mapContainer} className='w-[97%] h-svh'></div>;
+    return <div ref={mapContainer} id='map' className=' w-[97%]'></div>;
 };
 
 export default MainMap;
