@@ -7,11 +7,11 @@ const MyCardDrawer = ({ children }) => {
 
 
     return (
-        <div className='w-full absolute bottom-0 left-0 bg-blue-600'>
-            <Button variant={"outline"} onClick={() => setToggle(!toggle)}>
+        <div className='w-full absolute bottom-0 left-0 '>
+            <Button variant={"ghost"} className='bg-gray-500/60 rounded-none rounded-t-lg ml-3 hover:bg-gray-500/80 text-white' onClick={() => setToggle(!toggle)}>
                 Open Drawer
             </Button>
-            <div className={`w-full bg-yellow-400 ${toggle ? "h-[500px]" : "h-0"}`}>
+            <div className={`w-full bg-gray-500/60 ${toggle ? "h-[500px]" : "h-0"}`}>
                 {children}
             </div>
         </div>
