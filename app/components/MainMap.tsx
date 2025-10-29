@@ -26,7 +26,7 @@ const MainMap = () => {
         return () => map.dispose(); // Clean up on unmount
     }, []);
 
-    return <div ref={mapContainer} style={{ width: '100%', height: '400px' }}></div>;
+    return <div ref={mapContainer} className='absolute top-0 bottom-0 w-full'></div>;
 };
 
 export default MainMap;
