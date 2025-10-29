@@ -26,7 +26,7 @@ const MainMap = () => {
         return () => map.dispose(); // Clean up on unmount
     }, []);
 
-    return <div ref={mapContainer} className='absolute top-0 bottom-0 w-full'></div>;
+    return <div ref={mapContainer} className='w-[97%] h-svh'></div>;
 };
 
 export default MainMap;
