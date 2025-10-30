@@ -8,37 +8,16 @@ import OSM from "ol/source/OSM"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import GeoJSON from "ol/format/GeoJSON"
-import { getCenter } from 'ol/extent';
+import geojsonCountry from "../assets/Kenya_Country.json";
+import { transform } from 'ol/proj';
 
-const geojsonObject = {
-    type: "Feature",
-    geometry: {
-        type: "MultiLineString",
-        coordinates: [
-            [
-                [-1e6, -7.5e5],
-                [-1e6, 7.5e5],
-            ],
-            [
-                [1e6, -7.5e5],
-                [1e6, 7.5e5],
-            ],
-            [
-                [-7.5e5, -1e6],
-                [7.5e5, -1e6],
-            ],
-            [
-                [-7.5e5, 1e6],
-                [7.5e5, 1e6],
-            ],
-        ],
-    },
-}
 
 const MainMap = () => {
     const mapContainer = useRef();
-
-    const geoJSONFeatures = new GeoJSON().readFeatures(geojsonObject)
+    const geoJSONFeatures = new GeoJSON().readFeatures(geojsonCountry, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857',
+    })
 
     // create vector source
     const vectorSource = new VectorSource({
@@ -59,11 +38,33 @@ const MainMap = () => {
                 vectorLayer
             ],
             view: new View({
-                center: [0, 0],
-                zoom: 2,
+                center: transform([
+                    37.91567242980515,
+                    0.170945,
+                ],
+                    "EPSG:4326",
+                    "EPSG:3857",),
+                zoom: 7,
             }),
         });
 
+        map.on('click', function (event) {
+            // The 'event' object contains information about the click
+            const clickedCoordinate = event.coordinate;
+
+            // The coordinates are in the map's view projection (e.g., Web Mercator by default)
+            console.log("Clicked at coordinates (in map projection):", clickedCoordinate);
+
+            // If you need the coordinates in a different projection (e.g., Latitude/Longitude),
+            // you can transform them using ol/proj.transform
+            const lonLatCoordinate = transform(clickedCoordinate, 'EPSG:3857', 'EPSG:4326');
+            console.log("Clicked at Lon/Lat:", lonLatCoordinate);
+
+            // You can then use these coordinates for various purposes, such as:
+            // - Displaying a popup at the clicked location
+            // - Adding a marker at the clicked location
+            // - Performing a WMS GetFeatureInfo request
+        });
         return () => map.dispose(); // Clean up on unmount
     }, []);
 
