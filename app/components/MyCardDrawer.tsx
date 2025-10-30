@@ -37,7 +37,7 @@ const MyCardDrawer = ({ children }) => {
             <Button variant={"ghost"} size={"lg"} className='bg-gray-500/60 rounded-none rounded-t-lg mx-auto md:ml-3 hover:bg-gray-500/40 text-white *:size-7! cursor-pointer' onClick={() => setToggle(!toggle)}>
                 {toggle ? <ChevronDown /> : <ChevronUp />}
             </Button>
-            <div className={`w-full bg-gray-500/60 duration-300 ease-linear ${toggle ? "h-1/2 p-10" : "h-0"} `}>
+            <div className={`w-full bg-gray-500/60 duration-300 ease-linear ${toggle ? "h-[600px] p-10" : "h-0"} `}>
 
                 {/* <Button className={selectedStats === "total" ? "bg-blue-900 text-white" : ""} variant={"outline"} onClick={() => setSelectedStats("total")}>Total Area Stats</Button>
                 <Button className={selectedStats === "cropland" ? "bg-blue-900 text-white" : ""} variant={"outline"} onClick={() => setSelectedStats("cropland")}>Cropland Area Stats</Button> */}

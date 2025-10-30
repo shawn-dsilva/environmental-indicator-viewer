@@ -21,6 +21,7 @@
     "ol-ext": "^4.0.36",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-openlayers": "^10.5.1",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2"
   },
