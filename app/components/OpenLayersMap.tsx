@@ -4,6 +4,7 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import useMapStore from '@/app/hooks/useMapStore'; // Adjust path as needed
+import { transform } from 'ol/proj';
 
 const OpenLayersMap = ({ children, center, zoom }) => {
     const mapRef = useRef();
@@ -18,7 +19,11 @@ const OpenLayersMap = ({ children, center, zoom }) => {
                 }),
             ],
             view: new View({
-                center,
+                center: transform([
+                    ...center
+                ],
+                    "EPSG:4326",
+                    "EPSG:3857",),
                 zoom,
             }),
         });

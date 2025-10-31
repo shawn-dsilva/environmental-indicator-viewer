@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import geojsonSubdiv from "../assets/Kenya_Rename_Subdiv.json";
 import useMapStore from '@/app/hooks/useMapStore'; // Adjust path as needed
-import { createVectorSource } from '../utils/createVectorSource'
 
 
 const SUBDIVS =
@@ -208,22 +207,15 @@ const SUBDIVS =
         "capital": "Nairobi City"
     }]
 
-const selectSubdiv = (subdiv) => {
-    const selectedSubdiv = geojsonSubdiv.features.filter(feature => feature.properties.shapeName === subdiv.name)
-    console.log(selectedSubdiv)
-}
-
-
 const LeftCardDrawer = ({ children }) => {
     const [toggle, setToggle] = useState(false)
-    const [selectedStats, setSelectedStats] = useState("total")
 
     const setGeojson = useMapStore((state) => state.setSelectedGeojson)
 
     const selectSubdiv = (subdiv) => {
         const selectedSubdiv = geojsonSubdiv.features.filter(feature => feature.properties.shapeName === subdiv.name)
         const newGeojson = { ...geojsonSubdiv, features: selectedSubdiv }
-        const vectorSource = createVectorSource(newGeojson)
+        const vectorSource = newGeojson
         setGeojson(vectorSource)
     }
     return (

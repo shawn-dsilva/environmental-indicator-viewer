@@ -4,6 +4,7 @@ import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Style, Fill, Stroke } from 'ol/style';
 import useMapStore from '@/app/hooks/useMapStore'; // Adjust path as needed
+import { createVectorSource } from '../utils/createVectorSource';
 
 const GeoJsonLayer = () => {
     const map = useMapStore((state) => state.map);
@@ -12,17 +13,11 @@ const GeoJsonLayer = () => {
     useEffect(() => {
         if (!map) return;
 
-        // const vectorSource = new VectorSource({
-        //     features: new GeoJSON().readFeatures(geojsonData, {
-        //         featureProjection: 'EPSG:3857', // Project GeoJSON coordinates to map projection
-        //     }),
-        // });
-
         const vectorLayer = new VectorLayer({
-            source: geojson,
+            source: createVectorSource(geojson),
             style: new Style({
-                fill: new Fill({ color: 'rgba(255, 0, 0, 0.4)' }),
-                stroke: new Stroke({ color: 'red', width: 2 }),
+                fill: new Fill({ color: 'rgba(2, 74, 112, 0.6)' }),
+                stroke: new Stroke({ color: 'blue', width: 2 }),
             }),
         });
 
