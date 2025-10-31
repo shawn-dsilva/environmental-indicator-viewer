@@ -21,7 +21,7 @@ const InfoCard = ({ data }) => {
                 <p className="text-4xl  text-blue-900">{data?.value}</p>
             </CardContent>
             <CardFooter className="row-span-1">
-                <Link className="text-2xl pb-2 text-blue-600 hover:text-blue-900 border-b-2 border-transparent hover:border-blue-900" href={""}>
+                <Link className="text-2xl pb-2 text-blue-600 hover:text-blue-900 border-b-2 border-transparent hover:border-blue-900" href={"/et-analysis"}>
                     <p>
                         View Details <LucideArrowRight className="inline-block" />
                     </p>
