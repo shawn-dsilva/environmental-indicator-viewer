@@ -1,11 +1,9 @@
 "use client"
 import { Button } from '@/components/ui/button'
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import React, { useState } from 'react'
-import InfoCard from './InfoCard'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Separator } from "@/components/ui/separator"
 import BackBtn from './BackBtn'
+import { LineChart } from './LineChart'
 
 
 
@@ -28,8 +26,9 @@ const LeftCardDrawer = ({ children }) => {
 
                     <p className='text-lg font-normal text-gray-400 '>Explore patterns and trends in water availability and usage across various indicators.</p>
                     <p className='text-lg font-normal text-gray-400  pb-4'>Select a Category below to view detailed charts and insights.</p>
-
+                    <LineChart />
                 </div>
+
 
             </div>
             <Button variant={"ghost"} size={"lg"} className='bg-white rounded-none rounded-r-lg my-auto! py-7! px-3! hover:bg-gray-200 text-blue-800 *:size-7! cursor-pointer' onClick={() => setToggle(!toggle)}>
