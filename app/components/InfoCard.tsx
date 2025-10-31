@@ -11,7 +11,7 @@ import { LucideArrowBigRight, LucideArrowRight } from "lucide-react"
 import Link from "next/link"
 const InfoCard = ({ data }) => {
     return (
-        <Card className="w-1/4! rounded-none grid grid-rows-8 gap-2">
+        <Card className="w-full md:w-1/4! rounded-none grid grid-rows-8 gap-2">
             <CardHeader className="row-span-4">
                 <CardTitle className="text-2xl font-medium row-span-1!">{data?.title}</CardTitle>
                 <hr className="row-span-1!"></hr>
