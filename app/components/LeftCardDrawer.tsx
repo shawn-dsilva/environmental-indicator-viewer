@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import InfoCard from './InfoCard'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
+import BackBtn from './BackBtn'
 
 
 
@@ -20,7 +21,11 @@ const LeftCardDrawer = ({ children }) => {
                 {/* <Button className={selectedStats === "total" ? "bg-blue-900 text-white" : ""} variant={"outline"} onClick={() => setSelectedStats("total")}>Total Area Stats</Button>
                 <Button className={selectedStats === "cropland" ? "bg-blue-900 text-white" : ""} variant={"outline"} onClick={() => setSelectedStats("cropland")}>Cropland Area Stats</Button> */}
                 <div className={!toggle ? "hidden" : ""}>
-                    <h1 className='text-4xl font-medium  pb-5'>Evapo Transpiration</h1>
+                    <div className='flex gap-3 pb-5'>
+                        <BackBtn />
+                        <h1 className='text-3xl font-medium w-full m-0 '>Evapotranspiration</h1>
+                    </div>
+
                     <p className='text-lg font-normal text-gray-400 '>Explore patterns and trends in water availability and usage across various indicators.</p>
                     <p className='text-lg font-normal text-gray-400  pb-4'>Select a Category below to view detailed charts and insights.</p>
 
