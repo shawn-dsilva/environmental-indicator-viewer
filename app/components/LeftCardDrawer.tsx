@@ -5,11 +5,14 @@ import { useState } from 'react'
 import BackBtn from './BackBtn'
 import { LineChart } from './LineChart'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import useMapStore from '@/app/hooks/useMapStore'; // Adjust path as needed
 import subdivlist from "@/app/assets/Kenya_Subdiv_List.json";
 import useSWR from 'swr'
@@ -49,16 +52,17 @@ const LeftCardDrawer = ({ children }) => {
 
                     <p>Showing Results For: <span className='text-sky-800 font-medium'>{currSelection}</span></p>
                     <div className='py-3'>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline">Select Sub-Division</Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className='max-h-56'>
-                                {subdivlist["Kenya"].map((subdiv, index) => <DropdownMenuItem key={index} onClick={() => selectSubdiv(subdiv)}>
+
+                        <Select>
+                            <SelectTrigger className="w-[280px]">
+                                <SelectValue placeholder="Select a Country" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {subdivlist["Kenya"].map((subdiv, index) => <SelectItem value={subdiv.name} key={index} onPointerDown={() => selectSubdiv(subdiv)} >
                                     {subdiv.name}
-                                </DropdownMenuItem>)}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                                </SelectItem>)}
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {
