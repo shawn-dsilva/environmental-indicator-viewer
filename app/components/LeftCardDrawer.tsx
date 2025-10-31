@@ -1,6 +1,6 @@
 "use client"
 import { Button } from '@/components/ui/button'
-import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, TableProperties } from 'lucide-react'
 import React, { useState } from 'react'
 import BackBtn from './BackBtn'
 import { LineChart } from './LineChart'
@@ -12,6 +12,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import geojsonSubdiv from "../assets/Kenya_Rename_Subdiv.json";
+import useMapStore from '@/app/hooks/useMapStore'; // Adjust path as needed
+import { createVectorSource } from '../utils/createVectorSource'
 
 
 const SUBDIVS =
@@ -206,7 +209,8 @@ const SUBDIVS =
     }]
 
 const selectSubdiv = (subdiv) => {
-    console.log(subdiv)
+    const selectedSubdiv = geojsonSubdiv.features.filter(feature => feature.properties.shapeName === subdiv.name)
+    console.log(selectedSubdiv)
 }
 
 
@@ -214,6 +218,14 @@ const LeftCardDrawer = ({ children }) => {
     const [toggle, setToggle] = useState(false)
     const [selectedStats, setSelectedStats] = useState("total")
 
+    const setGeojson = useMapStore((state) => state.setSelectedGeojson)
+
+    const selectSubdiv = (subdiv) => {
+        const selectedSubdiv = geojsonSubdiv.features.filter(feature => feature.properties.shapeName === subdiv.name)
+        const newGeojson = { ...geojsonSubdiv, features: selectedSubdiv }
+        const vectorSource = createVectorSource(newGeojson)
+        setGeojson(vectorSource)
+    }
     return (
         <div className='h-full absolute left-0 top-0 flex '>
             <div className={` bg-white h-full duration-300 ease-out ${toggle ? "w-3/4 p-10 border-2-gray-300" : "w-0"} `}>
@@ -231,7 +243,7 @@ const LeftCardDrawer = ({ children }) => {
 
                     <div className='py-3'>
                         <DropdownMenu>
-                            <DropdownMenuTrigger>
+                            <DropdownMenuTrigger asChild>
                                 <Button variant="outline">Select Sub-Division</Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className='max-h-56'>
