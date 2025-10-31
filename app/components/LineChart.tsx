@@ -51,25 +51,16 @@ export function LineChart({ data }) {
         datasets: [
             {
                 label: 'Evapotranspiration',
-                data: data.data,
+                data: data["evapotranspiration"],
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
-            // {
-            //     label: 'Precipitation',
-            //     data: [{
-            //         x: '2021-10-06 23:39:30',
-            //         y: 500
-            //     }, {
-            //         x: '2021-11-07 01:00:28',
-            //         y: 600
-            //     }, {
-            //         x: '2021-12 -07 09:00:28',
-            //         y: 200
-            //     }],
-            //     borderColor: 'rgb(53, 162, 235)',
-            //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            // },
+            {
+                label: 'Precipitation',
+                data: data["precipitation"],
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
         ],
     };
 
