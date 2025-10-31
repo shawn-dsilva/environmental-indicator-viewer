@@ -1,18 +1,15 @@
 "use client"
 import { Button } from '@/components/ui/button'
-import { ChevronDown, ChevronLeft, ChevronRight, TableProperties } from 'lucide-react'
-import React, { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
 import BackBtn from './BackBtn'
 import { LineChart } from './LineChart'
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import geojsonSubdiv from "../assets/Kenya_Rename_Subdiv.json";
 import useMapStore from '@/app/hooks/useMapStore'; // Adjust path as needed
 
 
@@ -212,18 +209,17 @@ const LeftCardDrawer = ({ children }) => {
 
     const setGeojson = useMapStore((state) => state.setSelectedGeojson)
 
-    const selectSubdiv = (subdiv) => {
-        const selectedSubdiv = geojsonSubdiv.features.filter(feature => feature.properties.shapeName === subdiv.name)
-        const newGeojson = { ...geojsonSubdiv, features: selectedSubdiv }
-        const vectorSource = newGeojson
-        setGeojson(vectorSource)
+    const selectSubdiv = async (subdiv) => {
+        const res = await fetch(`http://localhost:3000/api/geojson/${subdiv.name}`)
+        if (res.ok) {
+            const geojson = await res.json()
+            console.log(geojson)
+            setGeojson(geojson)
+        }
     }
     return (
         <div className='h-full absolute left-0 top-0 flex '>
             <div className={` bg-white h-full duration-300 ease-out ${toggle ? "w-3/4 p-10 border-2-gray-300" : "w-0"} `}>
-
-                {/* <Button className={selectedStats === "total" ? "bg-blue-900 text-white" : ""} variant={"outline"} onClick={() => setSelectedStats("total")}>Total Area Stats</Button>
-                <Button className={selectedStats === "cropland" ? "bg-blue-900 text-white" : ""} variant={"outline"} onClick={() => setSelectedStats("cropland")}>Cropland Area Stats</Button> */}
                 <div className={!toggle ? "hidden" : ""}>
                     <div className='flex gap-3 pb-5'>
                         <BackBtn />

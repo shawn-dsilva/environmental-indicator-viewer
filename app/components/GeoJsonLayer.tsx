@@ -16,7 +16,7 @@ const GeoJsonLayer = () => {
         const vectorLayer = new VectorLayer({
             source: createVectorSource(geojson),
             style: new Style({
-                fill: new Fill({ color: 'rgba(2, 74, 112, 0.6)' }),
+                fill: new Fill({ color: 'rgba(20, 71, 230, 0.71)' }),
                 stroke: new Stroke({ color: 'blue', width: 2 }),
             }),
         });
