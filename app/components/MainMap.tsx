@@ -11,9 +11,12 @@ import GeoJSON from "ol/format/GeoJSON";
 import geojsonCountry from "../assets/Kenya_Country.json";
 import { transform } from "ol/proj";
 import { Map, View, TileLayer, VectorLayer } from "react-openlayers";
+import MouseWheelZoom from 'ol/interaction/MouseWheelZoom';
+import DragPan from 'ol/interaction/DragPan';
+import PinchZoom from 'ol/interaction/PinchZoom';
+import PinchRotate from 'ol/interaction/PinchRotate';
 
 const MainMap = () => {
-    const mapContainer = useRef();
     const geoJSONFeatures = new GeoJSON().readFeatures(geojsonCountry, {
         dataProjection: "EPSG:4326",
         featureProjection: "EPSG:3857",
@@ -24,53 +27,8 @@ const MainMap = () => {
         features: geoJSONFeatures,
     });
 
-    // create vector layer with source
-    // const vectorLayer = new VectorLayer({
-    //     source: vectorSource,
-    // })
-    // useEffect(() => {
-    //     const map = new Map({
-    //         target: mapContainer.current, // Link to the DOM element
-    //         layers: [
-    //             new TileLayer({
-    //                 source: new OSM(),
-    //             }),
-    //             vectorLayer
-    //         ],
-    //         view: new View({
-    //             center: transform([
-    //                 37.91567242980515,
-    //                 0.170945,
-    //             ],
-    //                 "EPSG:4326",
-    //                 "EPSG:3857",),
-    //             zoom: 7,
-    //         }),
-    //     });
-
-    //     map.on('click', function (event) {
-    //         // The 'event' object contains information about the click
-    //         const clickedCoordinate = event.coordinate;
-
-    //         // The coordinates are in the map's view projection (e.g., Web Mercator by default)
-    //         console.log("Clicked at coordinates (in map projection):", clickedCoordinate);
-
-    //         // If you need the coordinates in a different projection (e.g., Latitude/Longitude),
-    //         // you can transform them using ol/proj.transform
-    //         const lonLatCoordinate = transform(clickedCoordinate, 'EPSG:3857', 'EPSG:4326');
-    //         console.log("Clicked at Lon/Lat:", lonLatCoordinate);
-
-    //         // You can then use these coordinates for various purposes, such as:
-    //         // - Displaying a popup at the clicked location
-    //         // - Adding a marker at the clicked location
-    //         // - Performing a WMS GetFeatureInfo request
-    //     });
-    //     return () => map.dispose(); // Clean up on unmount
-    // }, []);
-
-    // return <div ref={mapContainer} id='map' className=' w-[97%]'></div>;
     return (
-        <Map controls={[]} interactions={[]} style={{ width: '100%', height: "100%" }}>
+        <Map style={{ width: '100%', height: "100%" }} interactions={[new MouseWheelZoom(), new DragPan(), new PinchRotate(), new PinchZoom()]}>
             <TileLayer source={new OSM()} />
             <VectorLayer source={vectorSource} />
             <View
@@ -79,7 +37,7 @@ const MainMap = () => {
                     "EPSG:4326",
                     "EPSG:3857"
                 )}
-                zoom={4}
+                zoom={7}
             />
         </Map>
     );
