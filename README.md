@@ -1,3 +1,17 @@
+### How To Run
+
+Install packages
+```
+npm i 
+```
+
+Run Dev Server
+
+```
+npm run dev
+```
+
+
 ### Learnings
 
 - The `VectorLayer` component from `react-openlayers` doesn't re-render the map upon changes in it's `source` prop
